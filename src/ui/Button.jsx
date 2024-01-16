@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-function Button({ children, disabled, to, type }) {
-  const className =
-    'rounded-xl bg-amber-500 px-6 py-3 font-semibold uppercase tracking-wide text-stone-800 transition-colors duration-300 hover:bg-amber-400 focus:bg-amber-300 focus:outline-none focus:ring focus:ring-amber-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-stone-300';
+function Button({ children, disabled, to, type, onClick, }) {
+  // const className =
+  //   'rounded-xl bg-amber-500 px-6 py-3 font-semibold uppercase tracking-wide text-stone-800 transition-colors duration-300 hover:bg-amber-400 focus:bg-amber-300 focus:outline-none focus:ring focus:ring-amber-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-stone-300';
 
   const base = `text-sm rounded-xl bg-amber-500  font-semibold uppercase tracking-wide text-stone-800 transition-colors duration-300 hover:bg-amber-400 focus:bg-amber-300 focus:outline-none focus:ring focus:ring-amber-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-stone-300`;
 
@@ -19,6 +19,15 @@ function Button({ children, disabled, to, type }) {
         {children}
       </Link>
     );
+
+  if (onClick) {
+    return (
+      <button onClick={onClick} disabled={disabled} className={styles[type]}>
+        {children}
+      </button>
+    );
+  }
+
   return (
     <button disabled={disabled} className={styles[type]}>
       {children}
