@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, getCart } from './cartSlice';
 import EmptyCart from './EmptyCart';
 
-function Cart() {
+function Cart({ totalCartPrice }) {
   const username = useSelector((state) => state.user.username);
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
@@ -20,13 +20,13 @@ function Cart() {
 
       <ul className=" mt-3 divide-y divide-stone-200 border-b">
         {cart.map((item) => (
-          <CartItem item={item} key={item.id} />
+          <CartItem item={item} key={item.pizzaId} />
         ))}
       </ul>
 
       <div className="mt-6 space-x-2">
         <Button to="/order/new" type="primary">
-          Order pizzas
+          Order pizzas {totalCartPrice}
         </Button>
 
         <Button type="secondary" onClick={() => dispatch(clearCart())}>

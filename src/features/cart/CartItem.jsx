@@ -1,8 +1,12 @@
 import { formatCurrency } from '../../utils/helpers';
 import DeleteItem from './DeleteItem';
+import UpdateItemQuantity from './updateItemQuantity';
+import { useSelector } from 'react-redux';
+import getCurrentQuantityById from './cartSlice';
 
 function CartItem({ item }) {
   const { pizzaId, name, quantity, totalPrice } = item;
+
 
   return (
     <li className="justify-between py-3 sm:flex sm:items-center">
@@ -11,6 +15,10 @@ function CartItem({ item }) {
       </p>
       <div className="flex items-center justify-between sm:gap-6">
         <p className="text-sm font-bold">{formatCurrency(totalPrice)}</p>
+        <UpdateItemQuantity
+          pizzaId={pizzaId}
+          currentQuantity={quantity}
+        ></UpdateItemQuantity>
         <DeleteItem pizzaId={pizzaId}></DeleteItem>
       </div>
     </li>
